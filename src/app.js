@@ -9,4 +9,13 @@ app.use(express.json());
 app.use('/api', routes);
 app.use(express.json()); 
 
+app.get('/api', (req, res) => {
+  res.json({
+    message: 'Barbearia Setragni',
+    versao: 'Beta',
+    by: 'Lucas Panzera',
+    status: 'online'
+  });
+});
+
 module.exports = app;

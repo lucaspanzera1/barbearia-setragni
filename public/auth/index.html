@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Autenticação - Barbearia</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Barbearia - Autenticação</h2>
+
+    <div class="tabs">
+      <button id="loginTab" class="active">Login</button>
+      <button id="registerTab">Registrar</button>
+    </div>
+
+    <form id="loginForm" class="form">
+      <input type="email" id="loginEmail" placeholder="Email" required>
+      <input type="password" id="loginSenha" placeholder="Senha" required>
+      <button type="submit">Entrar</button>
+    </form>
+
+    <form id="registerForm" class="form hidden">
+      <input type="text" id="registerNome" placeholder="Nome completo" required>
+      <input type="email" id="registerEmail" placeholder="Email" required>
+      <input type="tel" id="registerTelefone" placeholder="Telefone" required>
+      <input type="password" id="registerSenha" placeholder="Senha" required>
+      <button type="submit">Registrar</button>
+    </form>
+
+    <div id="mensagem" class="mensagem"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
