@@ -39,6 +39,37 @@ if (!token || !user) {
     });
 }
 
+// Sincronizar nome do usuário entre os elementos
+    function updateUserName() {
+      const userName = document.getElementById('userName').textContent;
+      const userNameDisplay = document.getElementById('userNameDisplay');
+      if (userNameDisplay && userName && userName !== 'Usuário') {
+        userNameDisplay.textContent = userName;
+      }
+    }
+
+    // Observer para mudanças no userName
+    const observer = new MutationObserver(updateUserName);
+    const userNameElement = document.getElementById('userName');
+    if (userNameElement) {
+      observer.observe(userNameElement, { childList: true, subtree: true });
+    }
+
+    // Toggle para mostrar/ocultar campo de senha
+    const alterarSenhaCheckbox = document.getElementById('alterarSenha');
+    const senhaContainer = document.getElementById('senhaContainer');
+    const senhaInput = document.getElementById('senha');
+
+    alterarSenhaCheckbox.addEventListener('change', function() {
+      if (this.checked) {
+        senhaContainer.classList.remove('hidden');
+        senhaInput.focus();
+      } else {
+        senhaContainer.classList.add('hidden');
+        senhaInput.value = '';
+      }
+    });
+
 // Logout
 logoutBtn.addEventListener('click', () => {
   localStorage.removeItem('token');

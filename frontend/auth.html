@@ -4,51 +4,208 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Login / Registro - Barbearia</title>
-  <link rel="stylesheet" href="/css/auth.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    .font-playfair { font-family: 'Playfair Display', serif; }
+    .font-inter { font-family: 'Inter', sans-serif; }
+    
+    .barber-pole {
+      background: linear-gradient(45deg, 
+        transparent 25%, 
+        #000 25%, 
+        #000 50%, 
+        transparent 50%, 
+        transparent 75%, 
+        #000 75%);
+      background-size: 8px 8px;
+    }
+    
+    .razor-blade {
+      clip-path: polygon(0 0, 100% 20%, 80% 100%, 0 80%);
+    }
+  </style>
 </head>
-<body>
-  <div class="container">
-    <h2>Autenticação</h2>
-
-    <div class="tabs">
-      <button id="tabLogin" class="active">Login</button>
-      <button id="tabRegister">Registrar</button>
+<body class="bg-white min-h-screen font-inter">
+  <div class="min-h-screen flex">
+    <!-- Lado esquerdo - Branding -->
+    <div class="hidden lg:flex lg:w-1/2 bg-black relative overflow-hidden">
+      <!-- Decoração geométrica -->
+      <div class="absolute top-0 left-0 w-full h-2 bg-white"></div>
+      <div class="absolute bottom-0 left-0 w-full h-2 bg-white"></div>
+      
+      <!-- Elementos decorativos -->
+      <div class="absolute top-10 right-10 w-1 h-20 bg-white"></div>
+      <div class="absolute bottom-10 left-10 w-1 h-20 bg-white"></div>
+      
+      <div class="flex flex-col justify-center items-center w-full p-12 text-center">
+        <!-- Logo/Ícone -->
+        <div class="mb-8">
+          <div class="w-24 h-24 border-4 border-white rounded-full flex items-center justify-center mb-4">
+            <div class="w-12 h-1 bg-white relative">
+              <div class="absolute -top-2 left-0 w-3 h-5 bg-white"></div>
+              <div class="absolute -top-2 right-0 w-3 h-5 bg-white"></div>
+            </div>
+          </div>
+        </div>
+        
+        <h1 class="font-playfair text-4xl font-bold text-white mb-4">
+          BARBEARIA SETRAGNI
+        </h1>
+        
+        <div class="w-32 h-0.5 bg-white mb-6"></div>
+        
+        <p class="text-white/80 text-lg leading-relaxed max-w-md">
+          Rua Belmiro Braga - Caiçara, BH.
+        </p>
+        
+        <!-- Decoração inferior -->
+        <div class="mt-12 flex space-x-4">
+          <div class="w-2 h-2 bg-white rotate-45"></div>
+          <div class="w-2 h-2 bg-white rotate-45"></div>
+          <div class="w-2 h-2 bg-white rotate-45"></div>
+        </div>
+      </div>
     </div>
 
-    <!-- Login -->
-    <form id="formLogin" class="form active">
-      <label for="emailLogin">Email</label>
-      <input type="email" id="emailLogin" required />
-      
-      <label for="senhaLogin">Senha</label>
-      <input type="password" id="senhaLogin" required />
-      
-      <button type="submit">Entrar</button>
-    </form>
+    <!-- Lado direito - Formulário -->
+    <div class="w-full lg:w-1/2 flex items-center justify-center p-8">
+      <div class="w-full max-w-md">
+        <!-- Header mobile -->
+        <div class="lg:hidden text-center mb-8">
+          <div class="w-16 h-16 border-2 border-black rounded-full flex items-center justify-center mx-auto mb-4">
+            <div class="w-8 h-0.5 bg-black relative">
+              <div class="absolute -top-1 left-0 w-2 h-3 bg-black"></div>
+              <div class="absolute -top-1 right-0 w-2 h-3 bg-black"></div>
+            </div>
+          </div>
+          <h1 class="font-playfair text-2xl font-bold text-black">BARBEARIA</h1>
+        </div>
 
-    <!-- Registro -->
-    <form id="formRegister" class="form">
-      <label for="nomeRegister">Nome</label>
-      <input type="text" id="nomeRegister" required />
+        <!-- Tabs -->
+        <div class="flex border-b-2 border-black mb-8">
+          <button id="tabLogin" class="flex-1 py-3 px-4 text-center font-semibold text-black border-b-2 border-black bg-black text-white transition-all duration-300">
+            LOGIN
+          </button>
+          <button id="tabRegister" class="flex-1 py-3 px-4 text-center font-semibold text-black border-b-2 border-transparent hover:border-gray-300 transition-all duration-300">
+            REGISTRO
+          </button>
+        </div>
 
-      <label for="emailRegister">Email</label>
-      <input type="email" id="emailRegister" required />
+        <!-- Formulário de Login -->
+        <form id="formLogin" class="space-y-6">
+          <div>
+            <label for="emailLogin" class="block text-sm font-semibold text-black mb-2 uppercase tracking-wide">
+              Email
+            </label>
+            <input 
+              type="email" 
+              id="emailLogin" 
+              required 
+              class="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all duration-300"
+              placeholder="seu@email.com"
+            />
+          </div>
+          
+          <div>
+            <label for="senhaLogin" class="block text-sm font-semibold text-black mb-2 uppercase tracking-wide">
+              Senha
+            </label>
+            <input 
+              type="password" 
+              id="senhaLogin" 
+              required 
+              class="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all duration-300"
+              placeholder="••••••••"
+            />
+          </div>
+          
+          <button 
+            type="submit" 
+            class="w-full bg-black text-white py-3 px-6 font-semibold uppercase tracking-wide hover:bg-gray-800 transition-all duration-300 border-2 border-black hover:shadow-lg"
+          >
+            Entrar
+          </button>
+        </form>
 
-      <label for="telefoneRegister">Telefone</label>
-      <input type="text" id="telefoneRegister" required />
+        <!-- Formulário de Registro -->
+        <form id="formRegister" class="space-y-6 hidden">
+          <div>
+            <label for="nomeRegister" class="block text-sm font-semibold text-black mb-2 uppercase tracking-wide">
+              Nome Completo
+            </label>
+            <input 
+              type="text" 
+              id="nomeRegister" 
+              required 
+              class="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all duration-300"
+              placeholder="Seu nome completo"
+            />
+          </div>
 
-      <label for="senhaRegister">Senha</label>
-      <input type="password" id="senhaRegister" required />
+          <div>
+            <label for="emailRegister" class="block text-sm font-semibold text-black mb-2 uppercase tracking-wide">
+              Email
+            </label>
+            <input 
+              type="email" 
+              id="emailRegister" 
+              required 
+              class="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all duration-300"
+              placeholder="seu@email.com"
+            />
+          </div>
 
-      <!-- Tipo fixo como cliente -->
-      <input type="hidden" id="tipoRegister" value="cliente" />
+          <div>
+            <label for="telefoneRegister" class="block text-sm font-semibold text-black mb-2 uppercase tracking-wide">
+              Telefone
+            </label>
+            <input 
+              type="text" 
+              id="telefoneRegister" 
+              required 
+              class="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all duration-300"
+              placeholder="(11) 99999-9999"
+            />
+          </div>
 
-      <button type="submit">Registrar</button>
-    </form>
+          <div>
+            <label for="senhaRegister" class="block text-sm font-semibold text-black mb-2 uppercase tracking-wide">
+              Senha
+            </label>
+            <input 
+              type="password" 
+              id="senhaRegister" 
+              required 
+              class="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all duration-300"
+              placeholder="••••••••"
+            />
+          </div>
 
-    <p id="msgErro" class="error"></p>
+          <input type="hidden" id="tipoRegister" value="cliente" />
+
+          <button 
+            type="submit" 
+            class="w-full bg-black text-white py-3 px-6 font-semibold uppercase tracking-wide hover:bg-gray-800 transition-all duration-300 border-2 border-black hover:shadow-lg"
+          >
+            Registrar
+          </button>
+        </form>
+
+        <!-- Mensagem de erro -->
+        <p id="msgErro" class="mt-4 text-red-600 text-sm text-center font-medium"></p>
+
+        <!-- Footer -->
+        <div class="mt-8 text-center">
+          <div class="w-24 h-0.5 bg-black mx-auto mb-4"></div>
+          <p class="text-xs text-gray-600 uppercase tracking-wide">
+            Terça a Sábado | 08h - 19h.
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
-
+  
   <script src="/js/auth.js"></script>
 </body>
 </html>

@@ -2,17 +2,213 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>App - Barbearia</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    .font-playfair { font-family: 'Playfair Display', serif; }
+    .font-inter { font-family: 'Inter', sans-serif; }
+    
+    .geometric-pattern {
+      background-image: 
+        linear-gradient(90deg, transparent 95%, #000 95%),
+        linear-gradient(0deg, transparent 95%, #000 95%);
+      background-size: 20px 20px;
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.8s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .slide-up {
+      animation: slideUp 0.6s ease-out;
+    }
+    
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
-<body>
-  <div class="container">
-    <h1>Bem-vindo à Barbearia</h1>
-    <p id="mensagem">Carregando...</p>
-    <button id="logoutBtn" class="hidden">Sair</button>
-    <a href="/login" id="loginLink" class="hidden">Fazer login</a>
-  </div>
+<body class="bg-white min-h-screen font-inter">
+  <!-- Header -->
+  <header class="bg-black text-white">
+    <div class="max-w-6xl mx-auto px-4 py-6">
+      <div class="flex items-center justify-between">
+        <!-- Logo -->
+        <div class="flex items-center space-x-4">
+          <div class="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center">
+            <div class="w-6 h-0.5 bg-white relative">
+              <div class="absolute -top-1 left-0 w-1.5 h-2.5 bg-white"></div>
+              <div class="absolute -top-1 right-0 w-1.5 h-2.5 bg-white"></div>
+            </div>
+          </div>
+          <div>
+            <h1 class="font-playfair text-2xl font-bold">BARBEARIA SETRAGNI</h1>
+            <div class="w-16 h-0.5 bg-white mt-1"></div>
+          </div>
+        </div>
+        
+        <!-- User Info / Actions -->
+        <div class="flex items-center space-x-4">
+          <!-- User Welcome (when logged in) -->
+          <div id="userWelcome" class="hidden text-right">
+            <p class="text-sm text-white/80 uppercase tracking-wide">Bem-vindo,</p>
+            <p class="font-semibold"><span id="userNameHeader">Usuário</span></p>
+          </div>
+          
+          <!-- Navigation for logged in users -->
+          <a href="/dashboard" id="dashboardLink" class="hidden bg-transparent text-white px-4 py-2 font-semibold uppercase tracking-wide border-2 border-white hover:bg-white hover:text-black transition-all duration-300 text-sm">
+            Dashboard
+          </a>
+          
+          <button id="logoutBtn" class="hidden bg-white text-black px-6 py-2 font-semibold uppercase tracking-wide hover:bg-gray-100 transition-all duration-300 border-2 border-white">
+            Sair
+          </button>
+          
+          <a href="/login" id="loginLink" class="hidden bg-transparent text-white px-6 py-2 font-semibold uppercase tracking-wide border-2 border-white hover:bg-white hover:text-black transition-all duration-300">
+            Fazer Login
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
 
+  <!-- Main Content -->
+  <main class="flex-1">
+    <!-- Hero Section -->
+    <section class="relative bg-black text-white py-20">
+      <!-- Decorative elements -->
+      <div class="absolute top-0 left-0 w-full h-1 bg-white"></div>
+      <div class="absolute bottom-0 left-0 w-full h-1 bg-white"></div>
+      <div class="absolute top-10 left-10 w-1 h-16 bg-white"></div>
+      <div class="absolute top-10 right-10 w-1 h-16 bg-white"></div>
+      <div class="absolute bottom-10 left-1/4 w-1 h-16 bg-white"></div>
+      <div class="absolute bottom-10 right-1/4 w-1 h-16 bg-white"></div>
+      
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <div class="fade-in">
+          <h1 class="font-playfair text-5xl md:text-6xl font-bold mb-6">
+            BEM-VINDO À BARBEARIA
+          </h1>
+          
+          <div class="w-32 h-0.5 bg-white mx-auto mb-8"></div>
+          
+          <p id="mensagem" class="text-xl md:text-2xl text-white/90 mb-8 slide-up">
+            Carregando...
+          </p>
+          
+          <!-- Decorative elements -->
+          <div class="flex justify-center space-x-6 mt-12">
+            <div class="w-3 h-3 bg-white rotate-45"></div>
+            <div class="w-3 h-3 bg-white rotate-45"></div>
+            <div class="w-3 h-3 bg-white rotate-45"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Preview Section -->
+    <section class="py-20 bg-white">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="font-playfair text-4xl font-bold text-black mb-4">
+            NOSSOS SERVIÇOS
+          </h2>
+          <div class="w-24 h-0.5 bg-black mx-auto mb-6"></div>
+          <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+            Tradição e excelência em cada serviço, mantendo os mais altos padrões de qualidade desde 1950.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Service 1 -->
+          <div class="text-center p-8 border-2 border-black hover:bg-black hover:text-white transition-all duration-500 group">
+            <div class="w-16 h-16 border-2 border-black group-hover:border-white mx-auto mb-6 flex items-center justify-center">
+              <div class="w-8 h-0.5 bg-black group-hover:bg-white relative">
+                <div class="absolute -top-1 left-0 w-2 h-3 bg-black group-hover:bg-white"></div>
+                <div class="absolute -top-1 right-0 w-2 h-3 bg-black group-hover:bg-white"></div>
+              </div>
+            </div>
+            <h3 class="font-playfair text-2xl font-bold mb-4">CORTE CLÁSSICO</h3>
+            <p class="text-gray-600 group-hover:text-white/80">
+              Cortes tradicionais executados com precisão e técnica apurada.
+            </p>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="text-center p-8 border-2 border-black hover:bg-black hover:text-white transition-all duration-500 group">
+            <div class="w-16 h-16 border-2 border-black group-hover:border-white mx-auto mb-6 flex items-center justify-center">
+              <div class="w-6 h-6 border border-black group-hover:border-white rounded-full"></div>
+            </div>
+            <h3 class="font-playfair text-2xl font-bold mb-4">BARBA</h3>
+            <p class="text-gray-600 group-hover:text-white/80">
+              Modelagem e cuidados especiais para uma barba impecável.
+            </p>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="text-center p-8 border-2 border-black hover:bg-black hover:text-white transition-all duration-500 group">
+            <div class="w-16 h-16 border-2 border-black group-hover:border-white mx-auto mb-6 flex items-center justify-center">
+              <div class="w-4 h-8 border border-black group-hover:border-white"></div>
+            </div>
+            <h3 class="font-playfair text-2xl font-bold mb-4">TRATAMENTOS</h3>
+            <p class="text-gray-600 group-hover:text-white/80">
+              Cuidados especiais para cabelo e couro cabeludo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="py-20 bg-black text-white">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h2 class="font-playfair text-4xl font-bold mb-8">
+          TRADIÇÃO EM CADA DETALHE
+        </h2>
+        
+        <div class="w-32 h-0.5 bg-white mx-auto mb-8"></div>
+        
+        <div class="grid md:grid-cols-3 gap-12 mt-12">
+          <div>
+            <div class="text-3xl font-bold mb-2">75+</div>
+            <div class="text-white/80 uppercase tracking-wide">Anos de Tradição</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold mb-2">10K+</div>
+            <div class="text-white/80 uppercase tracking-wide">Clientes Satisfeitos</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold mb-2">100%</div>
+            <div class="text-white/80 uppercase tracking-wide">Qualidade Garantida</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t-2 border-black py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <div class="flex justify-center space-x-4 mb-4">
+        <div class="w-2 h-2 bg-black rotate-45"></div>
+        <div class="w-2 h-2 bg-black rotate-45"></div>
+        <div class="w-2 h-2 bg-black rotate-45"></div>
+      </div>
+      <p class="text-black font-semibold uppercase tracking-wide text-sm">
+        BARBEARIA SETRAGNI © 2025 • Terça a Sábado | 08h - 19h.
+      </p>
+    </div>
+  </footer>
+
+  
   <script src="/js/app.js"></script>
 </body>
 </html>
