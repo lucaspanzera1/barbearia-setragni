@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const routes = require('./routes');
 
@@ -17,5 +18,27 @@ app.get('/api', (req, res) => {
     status: 'online'
   });
 });
+
+// Servir arquivos estáticos
+app.use(express.static(path.join(__dirname, '../frontend'), { index: false }));
+
+// Rotas para páginas específicas
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+});
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/auth.html'));
+});
+
+app.get('/app', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+});
+
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dashboard.html'));
+});
+
+
+
 
 module.exports = app;
