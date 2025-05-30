@@ -58,3 +58,52 @@ exports.login = async (req, res) => {
 
   res.json({ user, token });
 };
+
+// Reaproveita bcrypt e supabase já importados
+
+// Buscar dados do usuário autenticado
+exports.me = async (req, res) => {
+  try {
+    const { id } = req.user;
+
+    const { data, error } = await supabase
+      .from('users')
+      .select('id, nome, email, telefone, tipo')
+      .eq('id', id)
+      .single();
+
+    if (error) return res.status(404).json({ error: 'Usuário não encontrado' });
+
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: 'Erro interno ao buscar usuário' });
+  }
+};
+
+exports.updateMe = async (req, res) => {
+  try {
+    const { id } = req.user;
+    const { nome, email, telefone, senha } = req.body;
+
+    // Monta objeto para update
+    const updateData = { nome, email, telefone };
+
+    if (senha) {
+      updateData.senha = await bcrypt.hash(senha, 10);
+    }
+
+    const { data, error } = await supabase
+      .from('users')
+      .update(updateData)
+      .eq('id', id)
+      .select('id, nome, email, telefone, tipo')
+      .single();
+
+    if (error) return res.status(400).json({ error: error.message });
+
+    res.json({ message: 'Perfil atualizado com sucesso', user: data });
+  } catch (err) {
+    res.status(500).json({ error: 'Erro interno ao atualizar usuário' });
+  }
+};
+
